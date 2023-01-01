@@ -1,0 +1,7 @@
+{
+  // 저장할 때 eslint, prettier rule에 따라 format 해주고 fix해준다.
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
