@@ -68,7 +68,7 @@ this.#inputGroupEl.classList.toggle("error",e.key === "Process")
 
 ### 1. webpack 설정하기
 
-React는 기본적인 webpack 설정이 되어 있기 때문에 따로 webpack 초기 세팅을 해본 경험이 없었다. 이렇게 entry, output, mode, plugin 등을 직접 설정해보니 번들링이 어떤 방식으로 이루어지는지 조금은 이해할 수 있는 기회였다.
+그동안 webpack이란 단어만 들어봤지 webpack 초기 세팅을 해본 적은 없었다. 이렇게 entry, output, mode, plugin 등을 직접 설정해보니 번들링이 어떤 방식으로 이루어지는지 조금은 이해할 수 있는 기회였다. 다음에는 codespliting, treeshaking 과 같은 고급 기능도 공부해보면 좋을 거 같다.
 
 ### 2. this 바인딩 이슈
 
