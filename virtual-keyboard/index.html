@@ -7,6 +7,7 @@
 
   <body>
     <div class="container" id="container">
+      <h1 class="title">Virtual Keyboard</h1>
       <div class="menu">
         <label class="switch">
           <input id="switch" type="checkbox" />
@@ -22,10 +23,7 @@
           </select>
         </div>
       </div>
-      <div class="input-group" id="input-group">
-        <input id="input" class="input" type="text" autocomplete="off" />
-        <div class="error-message">한글 입력 불가</div>
-      </div>
+      
       <div class="keyboard" id="keyboard">
         <div class="row">
           <div class="key" data-code="Backquote" data-val="`">
@@ -169,6 +167,10 @@
           <div class="key fn-key">-</div>
           <div class="key fn-key">Ctrl</div>
         </div>
+      </div>
+      <div class="input-group" id="input-group">
+        <input id="input" class="input" type="text" autocomplete="off" />
+        <div class="error-message">PLEASE WRITE ONLY ENGLISH</div>
       </div>
     </div>
   </body>
