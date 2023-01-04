@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel = “icon” href = ”favicon.ico” type = “image/x-icon” />
+    <link rel="stylesheet" href="main.css" />
+    <title>Calculator</title>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <input id="topInput" class="input" type="text" disabled />
+    </div>
+    <div class="row">
+      <div class="btn" onclick="inputNum(7)">7</div>
+      <div class="btn" onclick="inputNum(8)">8</div>
+      <div class="btn" onclick="inputNum(9)">9</div>
+      <div class="btn" onclick="inputEqual()">=</div>
+    </div>
+    <div class="row">
+      <div class="btn" onclick="inputNum(4)">4</div>
+      <div class="btn" onclick="inputNum(5)">5</div>
+      <div class="btn" onclick="inputNum(6)">6</div>
+      <div class="btn" onclick="inputOperator('+')">+</div>
+    </div>
+    <div class="row">
+      <div class="btn" onclick="inputNum(1)">1</div>
+      <div class="btn" onclick="inputNum(2)">2</div>
+      <div class="btn" onclick="inputNum(3)">3</div>
+      <div class="btn" onclick="inputOperator('-')">-</div>
+    </div>
+    <div class="row">
+      <div class="btn btn-lg" onclick="inputNum(0)">0</div>
+      <div class="btn" onclick="inputOperator('/')">/</div>
+      <div class="btn" onclick="inputOperator('*')">*</div>
+    </div>
+  </body>
+</html>

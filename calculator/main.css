@@ -1,0 +1,47 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: pink;
+  color: white;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn:active {
+  background-color: red;
+}
+
+.btn-lg {
+  width: 100px;
+  height: 48px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 204px;
+  height: 40px;
+  box-sizing: border-box;
+  outline: none;
+  color: rgb(240, 85, 85);
+  border-radius: 4px;
+  padding: 0 20px;
+}
+
+.input:disabled {
+  background-color: rgb(255, 240, 242);
+  border: 1px solid pink;
+  font-size: 14px;
+  font-weight: bold;
+}
