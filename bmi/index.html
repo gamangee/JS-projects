@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>BMI</title>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <form
+      id="form"
+      onsubmit="onSubmit(event)"
+      onreset="document.getElementById('result').style.display='none'"
+    >
+      <h1>BMI 계산기</h1>
+      <div class="container">
+        <div class="area weight">
+          <label for="w">몸무게(kg)</label>
+          <input
+            type="number"
+            id="w"
+            class="input"
+            name="w"
+            step="0.01"
+            min="20"
+          />
+        </div>
+        <div class="area height">
+          <label for="h">신장(m)</label>
+          <input
+            type="number"
+            id="h"
+            class="input"
+            name="h"
+            step="0.01"
+            min="0.5"
+          />
+        </div>
+        <button type="submit" class="btn">결과</button>
+      </div>
+      <div id="result">
+        <meter
+          id="meter"
+          min="10"
+          max="40"
+          optimum="20"
+          low="18.5"
+          high="25"
+        ></meter>
+        <div class="bmiNum">
+          당신의 BMI 지수는 <span id="bmi"></span>입니다.
+        </div>
+        <div><strong id="state"></strong>입니다.</div>
+        <button type="reset" class="btn red">초기화</button>
+      </div>
+    </form>
+  </body>
+</html>
