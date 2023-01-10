@@ -20,7 +20,7 @@ function App() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setSubmit((prev) => !prev);
+    setSubmit(true);
 
     if (isNaN(bmi) || w <= 0 || h <= 0) {
       alert('적절한 값을 입력하시오');
@@ -29,10 +29,10 @@ function App() {
 
     if (bmi < 18.5) {
       setState('저체중');
-      setCommon((prev) => !prev);
+      setCommon(false);
     } else if (bmi >= 25) {
       setState('과체중');
-      setCommon((prev) => !prev);
+      setCommon(false);
     } else {
       setState('정상');
     }
@@ -79,32 +79,31 @@ function App() {
           결과
         </button>
       </div>
-      {submit ||
-        (!isNaN(bmi) && (
-          <div>
-            <meter
-              id='meter'
-              min='10'
-              max='40'
-              optimum='20'
-              low='18.5'
-              high='25'
-              value={bmi}
-            ></meter>
-            <div className='bmiNum'>
-              당신의 BMI 지수는 <span id='bmi'>{Math.floor(bmi)}</span>입니다.
-            </div>
-            <div>
-              <strong id='state' className={common ? 'green' : 'coral'}>
-                {state}
-              </strong>
-              입니다.
-            </div>
-            <button className='btn red' onClick={onReset}>
-              초기화
-            </button>
+      {submit && !isNaN(bmi) && (
+        <div>
+          <meter
+            id='meter'
+            min='10'
+            max='40'
+            optimum='20'
+            low='18.5'
+            high='25'
+            value={bmi}
+          ></meter>
+          <div className='bmiNum'>
+            당신의 BMI 지수는 <span id='bmi'>{Math.floor(bmi)}</span>입니다.
           </div>
-        ))}
+          <div>
+            <strong id='state' className={common ? 'green' : 'coral'}>
+              {state}
+            </strong>
+            입니다.
+          </div>
+          <button className='btn red' onClick={onReset}>
+            초기화
+          </button>
+        </div>
+      )}
     </form>
   );
 }

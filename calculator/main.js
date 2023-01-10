@@ -6,6 +6,7 @@ let resultValue = null;
 
 function save() {
   const input = document.getElementById('topInput');
+
   let value = '';
 
   if (left === null) return;
