@@ -11,3 +11,5 @@
 [5. Bmi Calculator](https://github.com/gamangee/JS-projects/tree/master/bmi)
 <br>
 [6. Image Gallery](https://github.com/gamangee/JS-projects/tree/master/image-gallery)
+<br>
+[7. Drawing Board](https://github.com/gamangee/JS-projects/tree/master/drawing-board)
