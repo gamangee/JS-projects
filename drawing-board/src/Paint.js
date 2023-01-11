@@ -78,6 +78,8 @@ export default function Paint() {
 
     getCtx.lineTo(currentPosition.x, currentPosition.y);
     getCtx.stroke();
+
+    saveState();
   };
 
   const onMouseMove = (e) => {
@@ -130,6 +132,11 @@ export default function Paint() {
     setNaviImg(canvasRef.current.toDataURL());
   };
 
+  const saveState = () => {
+    const undo = canvasRef.current.toDataURL();
+    setUndo((prev) => [...prev, undo]);
+  };
+
   const handlePanel = (e) => {
     if (e.target.id === 'brush') {
       e.target.classList.toggle('brush');
@@ -139,6 +146,7 @@ export default function Paint() {
       setShowBrushPanel((prev) => !prev);
       e.target.classList.remove('eraser');
     }
+
     if (e.target.id === 'eraser') {
       e.target.classList.toggle('eraser');
       const modeActive = e.target.classList.contains('eraser');
@@ -147,23 +155,43 @@ export default function Paint() {
       setShowBrushPanel(false);
       e.target.classList.remove('brush');
     }
+
     if (e.target.id === 'navigator') {
       e.target.classList.toggle('navigator');
       setshowNaviPanel((prev) => !prev);
       updateNavigator();
     }
+
     if (e.target.id === 'undo') {
-      e.target.classList.toggle('undo');
       if (undo.length === 0) {
         alert('실행취소 불가!');
         return;
       }
 
-      console.log(undo);
-      const lastDo = undo.length - 1;
-      let previousDataUrl = setUndo(undo.filter((_, i) => i === lastDo));
-      console.log(previousDataUrl);
+      setUndo(undo.filter((_, i, a) => i !== a.length - 1));
+      let previousImg = new Image();
+      previousImg.onload = () => {
+        getCtx.clearRect(
+          0,
+          0,
+          getCtx.canvas.clientWidth,
+          getCtx.canvas.clientHeight
+        );
+        getCtx.drawImage(
+          previousImg,
+          0,
+          0,
+          getCtx.canvas.clientWidth,
+          getCtx.canvas.clientHeight,
+          0,
+          0,
+          getCtx.canvas.clientWidth,
+          getCtx.canvas.clientHeight
+        );
+      };
+      previousImg.src = undo[undo.length - 1];
     }
+
     if (e.target.id === 'clear') {
       getCtx.clearRect(
         0,
@@ -172,7 +200,10 @@ export default function Paint() {
         getCtx.canvas.clientHeight
       );
       initCanvasBackGround();
+      setUndo([]);
+      updateNavigator();
     }
+
     if (e.target.id === 'download') {
       e.target.children[0].href = canvasRef.current.toDataURL('image/jpeg', 1);
       e.target.children[0].download = 'example.jpeg';
