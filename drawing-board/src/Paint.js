@@ -14,23 +14,27 @@ const colorPalette = [
   '#2c3e50',
 ];
 
-const brushPanel = [
+const controlPanel = [
   'brush',
   'eraser',
-  'navigator',
   'undo',
   'clear',
   'download',
+  'navigator',
 ];
 
 export default function Paint() {
   const canvasRef = useRef(null);
   const brushSizeRef = useRef(null);
+  const [naviImg, setNaviImg] = useState('');
+  const [mode, setMode] = useState('NONE');
   const [getCtx, setGetCtx] = useState(null);
-  const [isPainting, setIsPainting] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
   const [brushSize, setBrushSize] = useState(30);
-  const [isBrushMode, setIsBrushMode] = useState(false);
+  const [showBrushPanel, setShowBrushPanel] = useState(false);
+  const [showNaviPanel, setshowNaviPanel] = useState(false);
   const [undo, setUndo] = useState([]);
+  const [pickedColor, setPickedColor] = useState('#000000');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,25 +52,6 @@ export default function Paint() {
     );
   };
 
-  const onMouseDown = (e) => {
-    setIsPainting(true);
-    const currentPosition = getMousePosition(e);
-    getCtx.beginPath();
-    getCtx.moveTo(currentPosition.x, currentPosition.y);
-    getCtx.lineCap = 'round';
-    getCtx.lineWidth = brushSize;
-    getCtx.lineTo(currentPosition.x, currentPosition.y);
-    getCtx.stroke();
-  };
-
-  const onMouseUp = () => {
-    setIsPainting(false);
-  };
-
-  const onMouseLeave = () => {
-    setIsPainting(false);
-  };
-
   const getMousePosition = (event) => {
     const boundaries = canvasRef.current.getBoundingClientRect();
     return {
@@ -75,11 +60,49 @@ export default function Paint() {
     };
   };
 
+  const onMouseDown = (e) => {
+    if (mode === 'NONE') return;
+    setIsMouseDown(true);
+    const currentPosition = getMousePosition(e);
+    getCtx.beginPath();
+    getCtx.moveTo(currentPosition.x, currentPosition.y);
+    getCtx.lineCap = 'round';
+
+    if (mode === 'BRUSH') {
+      getCtx.lineWidth = brushSize;
+      getCtx.strokeStyle = pickedColor;
+    } else if (mode === 'ERASER') {
+      getCtx.lineWidth = 50;
+      getCtx.strokeStyle = '#ffffff';
+    }
+
+    getCtx.lineTo(currentPosition.x, currentPosition.y);
+    getCtx.stroke();
+  };
+
   const onMouseMove = (e) => {
-    if (!isPainting) return;
+    if (!isMouseDown) return;
     const currentPosition = getMousePosition(e);
     getCtx.lineTo(currentPosition.x, currentPosition.y);
     getCtx.stroke();
+  };
+
+  const onMouseUp = () => {
+    if (mode === 'NONE') return;
+    setIsMouseDown(false);
+    updateNavigator();
+  };
+
+  const onMouseLeave = () => {
+    if (mode === 'NONE') return;
+    setIsMouseDown(false);
+    updateNavigator();
+  };
+
+  const onMouseOut = () => {
+    if (mode === 'NONE') return;
+    setIsMouseDown(false);
+    updateNavigator();
   };
 
   const handleBrushSize = (e) => {
@@ -90,27 +113,44 @@ export default function Paint() {
   };
 
   const handleColors = (e) => {
-    const color = e.target.style.backgroundColor;
-    getCtx.strokeStyle = color;
-    brushSizeRef.current.style.backgroundColor = color;
+    if (mode === 'NONE') return;
+    setPickedColor(e.target.id);
+    getCtx.strokeStyle = pickedColor;
     getCtx.fillStyle = getCtx.strokeStyle;
   };
 
   const handleColorPicker = (e) => {
-    getCtx.strokeStyle = e.target.value;
-    brushSizeRef.current.style.backgroundColor = e.target.value;
+    if (mode === 'NONE') return;
+    setPickedColor(e.target.value);
+    getCtx.strokeStyle = pickedColor;
+    brushSizeRef.current.style.backgroundColor = pickedColor;
+  };
+
+  const updateNavigator = () => {
+    setNaviImg(canvasRef.current.toDataURL());
   };
 
   const handlePanel = (e) => {
     if (e.target.id === 'brush') {
-      setIsBrushMode((prev) => !prev);
       e.target.classList.toggle('brush');
+      const modeActive = e.target.classList.contains('brush');
+      setMode(modeActive ? 'BRUSH' : 'NONE');
+      getCtx.canvas.style.cursor = modeActive ? 'crosshair' : 'default';
+      setShowBrushPanel((prev) => !prev);
+      e.target.classList.remove('eraser');
     }
     if (e.target.id === 'eraser') {
       e.target.classList.toggle('eraser');
+      const modeActive = e.target.classList.contains('eraser');
+      setMode(modeActive ? 'ERASER' : 'NONE');
+      getCtx.canvas.style.cursor = modeActive ? 'crosshair' : 'default';
+      setShowBrushPanel(false);
+      e.target.classList.remove('brush');
     }
     if (e.target.id === 'navigator') {
       e.target.classList.toggle('navigator');
+      setshowNaviPanel((prev) => !prev);
+      updateNavigator();
     }
     if (e.target.id === 'undo') {
       e.target.classList.toggle('undo');
@@ -125,7 +165,6 @@ export default function Paint() {
       console.log(previousDataUrl);
     }
     if (e.target.id === 'clear') {
-      e.target.classList.toggle('clear');
       getCtx.clearRect(
         0,
         0,
@@ -135,7 +174,6 @@ export default function Paint() {
       initCanvasBackGround();
     }
     if (e.target.id === 'download') {
-      e.target.classList.toggle('download');
       e.target.children[0].href = canvasRef.current.toDataURL('image/jpeg', 1);
       e.target.children[0].download = 'example.jpeg';
       e.target.children[0].click();
@@ -144,13 +182,20 @@ export default function Paint() {
 
   return (
     <div className='container'>
-      <ul className='colors' onClick={handleColors}>
+      <ul className='colors'>
         {colorPalette.map((el, idx) => (
-          <li key={idx} className='color' style={{ backgroundColor: el }}></li>
+          <li
+            key={idx}
+            className='color'
+            id={el}
+            style={{ backgroundColor: el }}
+            onClick={handleColors}
+          ></li>
         ))}
         <input
           type='color'
           className='colorPicker'
+          value={pickedColor}
           onChange={handleColorPicker}
         />
       </ul>
@@ -161,14 +206,19 @@ export default function Paint() {
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseLeave}
+        onMouseOut={onMouseOut}
         width='800'
         height='800'
       ></canvas>
-      <ul className='panels' onClick={handlePanel}>
-        {isBrushMode && (
+      <ul className='panels'>
+        {showBrushPanel && (
           <div className='brushPanel'>
             <div className='brushSizeContainer'>
-              <div className='brushSize' ref={brushSizeRef}></div>
+              <div
+                className='brushSize'
+                ref={brushSizeRef}
+                style={{ backgroundColor: pickedColor }}
+              ></div>
             </div>
             {brushSize}px
             <input
@@ -181,12 +231,17 @@ export default function Paint() {
             />
           </div>
         )}
-        {brushPanel.map((el, idx) => (
-          <li key={idx} className='panel'>
-            <button id={el} className={`panelBtn ${el}`}>
+        {controlPanel.map((el, idx) => (
+          <li key={idx} className='panel' onClick={handlePanel}>
+            <button id={el} className='panelBtn'>
               {el}
-              {el === 'download' && <a href='html'></a>}
+              {el === 'download' && <a></a>}
             </button>
+            {el === 'navigator' && showNaviPanel && (
+              <div className='navigatorImg'>
+                <img src={naviImg} alt='navigateImg' className='navImg' />
+              </div>
+            )}
           </li>
         ))}
       </ul>
