@@ -4,15 +4,17 @@
   justify-content: center;
   align-items: center;
   gap: 50px;
-  background-color: #f1f1f1;
 }
 
 .canvas {
   background-color: #ffffff;
+  border: 1px solid #8a8a8a;
+  border-radius: 20px;
 }
 
 .colors,
-.panels {
+.panels,
+.panel {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -30,6 +32,7 @@
 }
 
 .brushPanel {
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,6 +74,8 @@
   background-color: #eb3b5a;
 }
 
+.draw,
+.fill,
 .brush,
 .eraser,
 .navigator,
@@ -92,4 +97,19 @@
 .navImg {
   width: 100%;
   height: 100%;
+}
+
+.active {
+  background-color: #eb3b5a;
+}
+
+.textInput {
+  box-sizing: border-box;
+  all: unset;
+  width: 200px;
+  padding: 15px 0;
+  font-size: 15px;
+  border: none;
+  text-align: center;
+  background-color: #f1f1f1;
 }
