@@ -1,6 +1,6 @@
 # 이미지 슬라이더
 
-![image-slider.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/41ab64cc-42b2-4e0c-8ac6-2f73a81acf76/image-slider.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230102%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230102T091128Z&X-Amz-Expires=86400&X-Amz-Signature=6a3ee00097b4eb4c72527594f9d38116705dcc0a0eef950ff8859b6b7cdb5aab&X-Amz-SignedHeaders=host&x-id=GetObject)
+![image-slider.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/41ab64cc-42b2-4e0c-8ac6-2f73a81acf76/image-slider.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230116T073252Z&X-Amz-Expires=86400&X-Amz-Signature=cb2a1dba53dd8d73c24c1c96f7e90e2e64284b9b14cb253777c30f4d4f07f3ae&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 # 구현 기능
 

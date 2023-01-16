@@ -13,3 +13,5 @@
 [6. Image Gallery](https://github.com/gamangee/JS-projects/tree/master/image-gallery)
 <br>
 [7. Drawing Board](https://github.com/gamangee/JS-projects/tree/master/drawing-board)
+<br>
+[8. TodoList](https://github.com/gamangee/JS-projects/tree/master/todolist)
