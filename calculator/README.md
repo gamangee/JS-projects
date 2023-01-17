@@ -1,6 +1,6 @@
 # 계산기
 
-![calculator.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b4a4a6bf-1a31-475e-bed4-38fb25d40714/calculator.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230116T084058Z&X-Amz-Expires=86400&X-Amz-Signature=3691d1567fd0059687a2f42dc70e65052de9c528ad050a9a9e8efb259f1bb0a8&X-Amz-SignedHeaders=host&x-id=GetObject)
+![calculator.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b4a4a6bf-1a31-475e-bed4-38fb25d40714/calculator.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230117%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230117T124842Z&X-Amz-Expires=86400&X-Amz-Signature=77059042546700daf3b4f436bbe8c23b75542dfd64d67bff92c4739e0194a492&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 # 구현 기능
 

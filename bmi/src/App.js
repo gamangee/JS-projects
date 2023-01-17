@@ -39,7 +39,7 @@ function App() {
   };
 
   const onReset = (e) => {
-    setSubmit((prev) => !prev);
+    setSubmit(false);
     setUserInfor({ weight: '', height: '' });
   };
 
@@ -59,6 +59,7 @@ function App() {
             min='20'
             value={weight}
             onChange={handleUserInfo}
+            readOnly={submit}
           />
         </div>
         <div className='area height'>
@@ -73,6 +74,7 @@ function App() {
             min='0.5'
             value={height}
             onChange={handleUserInfo}
+            readOnly={submit}
           />
         </div>
         <button type='submit' className='btn'>

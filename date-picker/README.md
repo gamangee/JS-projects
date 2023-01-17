@@ -1,6 +1,6 @@
 # 달력
 
-![date-picker.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9c2290cd-fb4d-4639-ade6-74ecdb68ff0e/date-picker.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230116T073817Z&X-Amz-Expires=86400&X-Amz-Signature=c6fa3306e2d26e5eac888c9f9acebd4bd76d1887d5643b80552e178d2c621e9c&X-Amz-SignedHeaders=host&x-id=GetObject)
+![date-picker.gif](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9c2290cd-fb4d-4639-ade6-74ecdb68ff0e/date-picker.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230117%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230117T133953Z&X-Amz-Expires=86400&X-Amz-Signature=69247aaf9e0df480638e4f7f0f43dd8525e0b2bd381ede4929d81415693f31b2&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 # 구현 기능
 
